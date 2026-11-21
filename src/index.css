@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, Cambria, serif;
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-canvas: #0d0d0f;
+  --color-surface: #151518;
+  --color-card: #1c1c21;
+  --color-hairline: #2a2a32;
+  --color-ink: #f5f0ea;
+  --color-ink-secondary: #a8a59e;
+  --color-ink-muted: #84817c;
+  --color-accent: #e8a045;
+  --color-accent-warm: #c85a3a;
+  --color-accent-hover: #f2b45e;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  .font-editorial {
+    font-family: var(--font-serif);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+@keyframes gallery-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes portrait-ring-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-gallery-marquee {
+  display: flex;
+  width: max-content;
+  animation: gallery-marquee 38s linear infinite;
+}
+
+.animate-gallery-marquee:hover {
+  animation-play-state: paused;
+}
+
+.portrait-ring-spinner {
+  background: conic-gradient(
+    from 0deg,
+    #e8a045 0deg,
+    rgba(232, 160, 69, 0.08) 125deg,
+    #c85a3a 240deg,
+    rgba(232, 160, 69, 0.08) 360deg
+  );
+  animation: portrait-ring-spin 10s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gallery-marquee,
+  .portrait-ring-spinner {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
